@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "Food Matcher Buyer v3",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

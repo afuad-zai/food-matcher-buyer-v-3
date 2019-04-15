@@ -1,0 +1,7 @@
+{
+  "name": "Food Matcher Buyer v3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "ionic-angular"
+}
