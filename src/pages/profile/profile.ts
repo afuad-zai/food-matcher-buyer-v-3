@@ -73,14 +73,14 @@ export class ProfilePage {
   }
 
   getPhoto() {
-    // this.cameraPvdr.getPhoto().then(image => {
-    //   this.accountPvdr.uploadProfileImage(image.path).then((res) => {
-    //     this.image = image.webPath;
-    //     this.profile.image = res.response.toString();
-    //   })
-    // })
-    this.image = "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1551322674.3587_Y2azAt_n.jpg";
-    this.profile.image = this.image;
+    this.cameraPvdr.getPhoto().then(image => {
+      this.accountPvdr.uploadProfileImage(image.path).then((res) => {
+        this.image = image.webPath;
+        this.profile.image = res.response.toString();
+      })
+    })
+    // this.image = "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1551322674.3587_Y2azAt_n.jpg";
+    // this.profile.image = this.image;
   }
 
   saveChanges() {

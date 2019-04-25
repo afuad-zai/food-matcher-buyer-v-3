@@ -53,8 +53,8 @@ export class OrderPage {
   }
 
   completeOrder(order: Order, index, slidingItem: ItemSliding) {
-    this.qrPvdr.scan().then((scannedId) => {
-      if (scannedId == order.orderId) {
+    this.qrPvdr.scan().then((result: any) => {
+      if (result.text == order.orderId) {
         this.orderPvdr.updateOrderStatus(order.orderId, "Completed").then((res) => {
           this.displayToast("Order has been completed.")
           this.orderList[index].status = "Completed";
@@ -63,7 +63,7 @@ export class OrderPage {
           this.displayToast("Something went wrong. Order status has not been updated.")
         })
       } else {
-        this.displayToast("Incorrect QR code for this order.")
+        this.displayToast("Please scan QR code for this order.")
       }
     })
   }
