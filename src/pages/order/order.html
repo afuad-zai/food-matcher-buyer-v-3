@@ -1,0 +1,87 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Order</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="orderList && !orderList.length" class="emptyState">
+    <img src="./assets/imgs/notification.svg">
+    <h2 text-center>No order has been placed.</h2>
+  </div>
+
+
+  <ion-list *ngIf="orderList && orderList.length">
+    <ion-card *ngFor="let order of orderList; let i=index;">
+
+      <ion-card class="card-header">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="order.storeImage" (error)="storeImg.src='./assets/imgs/placeholder_store'" #storeImg>
+          </ion-avatar>
+          <h1>{{order.storeName}}</h1>
+          <p>Placed on {{order.timestamp | date:'dd/MM/yyyy hh:mm'}}</p>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-card-content>
+        <ion-list>
+          <div *ngFor="let menu of order.menus">
+            <ion-item *ngIf="menu.menuId.length">
+              <ion-thumbnail item-start class="notificationImage">
+                <img [src]="menu.imageURL" (error)="menuImg.src='./assets/imgs/placeholder_food.png'" #menuImg>
+              </ion-thumbnail>
+
+              <ion-label>
+                {{menu.name + " x " + menu.quantity}}
+                <br>
+                RM{{menu.price | number:'1.2-2'}} per unit
+              </ion-label>
+            </ion-item>
+          </div>
+
+        </ion-list>
+
+
+        <ion-item-sliding #slidingItem>
+          <ion-item>
+            <ion-label>
+              Total Price : RM {{ totalPrice[i] | number:'1.2-2'}}
+              <br>
+              {{order.status}}
+            </ion-label>
+            <ion-icon *ngIf="!order.userRating.length" item-end name="arrow-round-back"></ion-icon>
+          </ion-item>
+
+
+          <ion-item-options *ngIf="!order.userRating.length" no-padding>
+            <button *ngIf="!order.userRating.length" ion-button icon-only (click)="openRating(order, i, slidingItem)">
+              <ion-icon name="text"></ion-icon>
+            </button>
+            <button *ngIf="order.status == 'Incomplete'" ion-button icon-only
+              (click)="completeOrder(order, i, slidingItem)">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </button>
+            <button *ngIf="order.status == 'Incomplete'" ion-button icon-only
+              (click)="deleteItem(order, i, slidingItem)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card-content>
+
+
+    </ion-card>
+  </ion-list>
+
+
+
+
+</ion-content>

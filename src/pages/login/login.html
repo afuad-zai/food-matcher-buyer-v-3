@@ -1,0 +1,82 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <div id="logo" padding text-center>
+    <img src="./assets/imgs/logo.png">
+  </div>
+
+  <div padding>
+    <ion-segment [(ngModel)]="opt" color="light">
+      <ion-segment-button value="signin">
+        Sign In
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+        Sign Up
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="opt">
+    <form (submit)="doSignin()" *ngSwitchCase="'signin'">
+      <ion-list>
+        <ion-item>
+          <ion-label fixed>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label fixed>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+        </ion-item>
+
+
+        <div padding text-center>
+          <button ion-button round color="light" icon-right>
+            Sign In <ion-icon name="log-in"></ion-icon>
+          </button>
+        </div>
+      </ion-list>
+
+
+    </form>
+
+    <form (submit)="doSignup()" *ngSwitchCase="'signup'">
+      <ion-list>
+        <ion-item>
+          <ion-label fixed>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label fixed>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label fixed>Re-enter Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password2" name="password"></ion-input>
+        </ion-item>
+
+
+
+
+        <div padding text-center>
+          <button ion-button round color="light" icon-right>
+            Sign Up <ion-icon name="person-add"></ion-icon>
+          </button>
+        </div>
+      </ion-list>
+
+
+
+    </form>
+
+  </div>
+</ion-content>

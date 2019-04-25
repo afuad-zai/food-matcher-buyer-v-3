@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>User review</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let rating of ratingList">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="rating.raterImage">
+      </ion-avatar>
+      <h2>{{rating.raterName}}</h2>
+      <p>{{rating.date | date:'dd/MM/yyyy' }}</p>
+    </ion-item>
+
+    <ion-card-content>
+      <p>{{rating.comment}}</p>
+    </ion-card-content>
+
+    <ion-row class="card-rating">
+      <ion-col>
+        <ion-icon [name]="rating.rate>0? 'star' : 'star-outline'"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon [name]="rating.rate>1? 'star' : 'star-outline'"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon [name]="rating.rate>2? 'star' : 'star-outline'"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon [name]="rating.rate>3? 'star' : 'star-outline'"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon [name]="rating.rate>4? 'star' : 'star-outline'"></ion-icon>
+      </ion-col>
+      <ion-col col-8></ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

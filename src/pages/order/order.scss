@@ -1,0 +1,47 @@
+page-order {
+  .item-md ion-thumbnail img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .item-md ion-avatar img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .item-md ion-icon[item-end] {
+    color: color($colors, danger);
+  }
+
+  ion-item-options .button:last-child {
+    padding-right: 0px;
+  }
+
+  // .button-md {
+  //   background-color: color($colors, danger);
+  // }
+
+  .card-header {
+    margin: 0px;
+    width: 100%;
+    background-color: color($colors, primary);
+    .item-md {
+      background-color: transparent;
+    }
+  }
+
+  // ion-card.card-header.card.card-md {
+  //   background-color: color($colors, danger);
+  // }
+  //
+
+  .card-md h1 {
+    color: #f8f8f8;
+  }
+
+  .card-md p {
+    color: #f8f8f8;
+  }
+}

@@ -1,0 +1,48 @@
+page-store {
+  ion-card-header.card-header.card-header-md {
+    background-color: color($colors, danger);
+    margin-bottom: 2px;
+  }
+
+  ion-icon {
+    color: #ffffff;
+  }
+
+  h2 {
+    color: color($colors, light);
+  }
+
+  .label-md {
+    margin: 13px 0px;
+  }
+
+  .qty-contain {
+    height: 100%;
+  }
+
+  .qty-margin {
+    margin-top: 31px;
+  }
+
+  .button-md[icon-only] {
+    padding: 0;
+    margin-top: 26px;
+    margin-bottom: 26px;
+    margin-left: -5px;
+    min-width: 0.9em;
+    background-color: color($colors, danger);
+  }
+
+  h3 {
+    padding: 12px 0px 12px 10px;
+    font-size: 1.6rem;
+  }
+
+  .place-order {
+    background-color: color($colors, danger);
+    margin-left: 10px;
+    margin-right: -3px;
+  }
+}
+
+.contact-popover .popover-content{ width: 70% !important; }

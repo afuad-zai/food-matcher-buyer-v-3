@@ -7,12 +7,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-fab right middle>
+    <button ion-fab color="light">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="resetCamera()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+      <button ion-fab (click)="showPopover()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-fab (click)="getNearbyStore()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <google-maps apiKey="AIzaSyDxGGtD1qi_nd--xfl5mw1TBaHwvlmpws0"></google-maps>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

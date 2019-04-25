@@ -1,0 +1,20 @@
+page-post-order-rating {
+    ion-content{
+        padding-left: 8px;
+        padding-right: 8px; 
+    }
+  .scroll-content {
+    overflow: hidden;
+    padding-bottom: 0px !important;
+  }
+
+  .text-input {
+    height: 80px;
+  }
+
+  ion-icon {
+    line-height: 2;
+    font-size: 1.5em;
+    color: color($colors, primary);
+  }
+}

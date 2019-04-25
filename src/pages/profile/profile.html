@@ -1,0 +1,65 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar #navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card no-margin style="width:100%;">
+    <ion-item>
+      <img [src]="image" (error)="profileImage.src='./assets/imgs/user.png'" (click)="getPhoto()" #profileImage>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input text-center type="text" [(ngModel)]="profile.name" (ionChange)="valueChanged()">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input text-center type="text" [(ngModel)]="profile.email" (ionChange)="valueChanged()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input text-center type="password" [(ngModel)]="profile.password" (ionChange)="valueChanged()">
+      </ion-input>
+      <button ion-button item-end clear icon-only color="danger" no-padding no-margin (click)="toggleChangePassword()">
+        <ion-icon name="unlock"></ion-icon>
+      </button>
+    </ion-item>
+
+
+
+
+    <ion-item *ngIf="changePassword">
+      <ion-label floating>New Password</ion-label>
+      <ion-input text-center type="password" [(ngModel)]="newPassword" (ionChange)="valueChanged()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="changePassword">
+      <ion-label floating>Password Confirmation</ion-label>
+      <ion-input text-center type="password" [(ngModel)]="confirmPassword" (ionChange)="valueChanged()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button item-end ion-button round (click)="saveChanges()">Update
+        Profile</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

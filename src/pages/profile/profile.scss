@@ -1,0 +1,64 @@
+page-profile {
+  .item-input .label-md {
+    color: color($colors, danger);
+  }
+
+  .card-md > .item:last-child {
+    padding-top: 0px;
+    padding-right: 0px;
+  }
+
+  .item-md {
+    padding-top: 8px;
+    padding-right: 16px;
+  }
+
+  .label-md[stacked],
+  .label-md[floating] {
+    color: color($colors, danger);
+  }
+
+  .geobutton {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-top: 32px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+    color: gray;
+  }
+
+  .geobutton.activated {
+    color: color($colors, danger);
+  }
+
+  submit-button {
+    padding: 0 0.6em !important;
+    height: 45px !important;
+    font-size: 1.2rem !important;
+  }
+
+  button.disable-hover.item-button.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: color($colors, danger);
+    width: 150px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  button.item-button.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: color($colors, danger);
+    width: 150px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .item-md.item-label-floating [item-end] {
+    margin-top: 30px;
+    margin-bottom: 7px;
+  }
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+  .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: color($colors, danger);
+    -webkit-box-shadow: inset 0 -1px 0 0 color($colors, danger);
+    box-shadow: inset 0 -1px 0 0 color($colors, danger);
+  }
+}

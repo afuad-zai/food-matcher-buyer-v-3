@@ -1,5 +1,5 @@
 {
-  "name": "food-matcher-buyer-v-3",
+  "name": "FM Buyer",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -20,20 +20,28 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@capacitor/android": "^1.0.0-beta.19",
     "@capacitor/cli": "1.0.0-beta.19",
     "@capacitor/core": "1.0.0-beta.19",
+    "@ionic-native/barcode-scanner": "^4.20.0",
     "@ionic-native/core": "~4.18.0",
+    "@ionic-native/file-transfer": "^4.20.0",
     "@ionic-native/splash-screen": "~4.18.0",
     "@ionic-native/status-bar": "~4.18.0",
     "@ionic/storage": "2.2.0",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-geolocation": "^4.0.1",
     "ionic-angular": "3.9.3",
     "ionicons": "3.0.0",
+    "phonegap-plugin-barcodescanner": "^8.0.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.1",
+    "@types/googlemaps": "^3.30.19",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project"
