@@ -15,60 +15,115 @@
   <ion-card>
     <img [src]="storeInfo.imageUrl" (error)="storeImg.src='./assets/imgs/placeholder_store.png'" #storeImg>
     <ion-card-header no-padding>
-      <ion-segment>
-        <ion-segment-button>
-          {{storeInfo.name}}
+      <ion-label>
+        <span class="store-name">{{storeInfo.name}}</span>
+        <br>{{storeInfo.openTime}} ~ {{storeInfo.closeTime}}
+      </ion-label>
+      <ion-segment [(ngModel)]="selected">
+
+        <ion-segment-button value="menu">
+          Menus
         </ion-segment-button>
-        <ion-segment-button (click)="openRatingPage()">
-          <ion-icon *ngFor="let star of stars" [name]="star? 'star' : 'star-outline'"></ion-icon>
+
+        <ion-segment-button value="rating">
+          Reviews
         </ion-segment-button>
+
       </ion-segment>
+
     </ion-card-header>
 
+    <ion-card-content padding-top no-padding [ngSwitch]="selected">
 
-    <ion-card-content no-padding>
-      <div *ngIf="menuList && !menuList.length" class="emptyState">
-        <img src="./assets/imgs/notification.svg">
-        <h2 text-center>Seller has not added any menu yet.</h2>
-        <br>
+      <div *ngSwitchCase="'menu'">
+        <div *ngIf="menuList && !menuList.length" class="emptyState">
+          <img src="./assets/imgs/notification.svg">
+          <h2 text-center>Seller has not added any menu yet.</h2>
+          <br>
+        </div>
+
+        <ion-grid *ngIf="menuList && menuList.length">
+          <ion-row *ngFor="let menu of menuList; let i=index" center>
+            <ion-col col-3>
+              <img [src]="menu.imageURL" (error)="menuImg.src='./assets/imgs/placeholder_food.png'" #menuImg
+                style="height:80px;width:80px">
+            </ion-col>
+            <ion-col>
+              <h2>{{menu.name}}</h2>
+              <p>RM {{menu.price | number:'1.2-2'}}</p>
+              <p>{{menu.preparation_time | completionTime}}</p>
+            </ion-col>
+            <ion-col col-1 item-start>
+              <button ion-button small icon-only round (click)="reduction(i)">
+                <ion-icon name="remove"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col col-1 text-center>
+              <p class="qty-margin">{{quantity[i]}}</p>
+            </ion-col>
+            <ion-col col-2 item-start>
+              <button ion-button small icon-only round (click)="increment(i)">
+                <ion-icon name="add"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h3><b>Total Price: RM {{ totalPrice | number:'1.2-2'}}</b></h3>
+            </ion-col>
+            <ion-col col-6 item-start>
+              <button class="place-order" ion-button round (click)="placeOrder()">
+                Place Order
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
 
-      <ion-grid *ngIf="menuList && menuList.length">
-        <ion-row *ngFor="let menu of menuList; let i=index">
-          <ion-col col-3>
-            <img [src]="menu.imageURL" (error)="menuImg.src='./assets/imgs/placeholder_food.png'" #menuImg
-              style="height:80px;width:80px">
-          </ion-col>
-          <ion-col>
-            <h2>{{menu.name}}</h2>
-            <p>RM {{menu.price | number:'1.2-2'}}</p>
-            <p>{{menu.preparation_time | completionTime}}</p>
-          </ion-col>
-          <ion-col col-1>
-            <button ion-button small icon-only round (click)="reduction(i)">
-              <ion-icon name="remove"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-2 text-center>
-            <p class="qty-margin">{{quantity[i]}}</p>
-          </ion-col>
-          <ion-col col-1 item-start>
-            <button ion-button small icon-only round (click)="increment(i)">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <h3><b>Total Price: RM {{ totalPrice | number:'1.2-2'}}</b></h3>
-          </ion-col>
-          <ion-col col-5 item-end>
-            <button class="place-order" ion-button round (click)="placeOrder()">
-              Place Order
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <div *ngSwitchCase="'rating'" class="rating">
+
+        <div *ngIf="ratingList && !ratingList.length" class="emptyState">
+          <img src="./assets/imgs/comments.svg">
+          <h2 text-center>No review has been given.</h2>
+          <br>
+        </div>
+
+        <ion-list *ngIf="ratingList && ratingList.length" class="rating">
+          <ion-card *ngFor="let rating of ratingList; let i=index;">
+
+
+            <ion-card class="card-header">
+              <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="rating.raterImage" (error)="storeImg.src='./assets/imgs/placeholder_store'" #storeImg>
+                </ion-avatar>
+                <h1>{{rating.raterName}}</h1>
+                <p>Reviewed on {{rating.date | date:'dd/MM/yyyy' }}</p>
+              </ion-item>
+            </ion-card>
+
+            <ion-card-content text-wrap>
+              <ion-row>
+                <ion-label *ngIf="!rating.comment.length"><i>Buyer has not left any comment on their order.</i>
+                </ion-label>
+                <ion-label *ngIf="rating.comment.length">{{rating.comment}}</ion-label>
+              </ion-row>
+              <ion-row>
+                <ion-col></ion-col>
+                <ion-col col-1 *ngFor="let star of stars; let i=index;">
+                  <ion-icon [name]="rating.rate>i? 'star': 'star-outline'"></ion-icon>
+                </ion-col>
+              </ion-row>
+
+            </ion-card-content>
+
+          </ion-card>
+        </ion-list>
+
+
+      </div>
+
+
 
     </ion-card-content>
   </ion-card>

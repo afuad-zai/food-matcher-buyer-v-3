@@ -23,12 +23,12 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input text-center type="text" [(ngModel)]="profile.name" (ionChange)="valueChanged()">
+      <ion-input  text-center type="text" [(ngModel)]="profile.name" (ionChange)="valueChanged()">
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input text-center type="text" [(ngModel)]="profile.email" (ionChange)="valueChanged()">
+      <ion-input [disabled]="true" text-center type="text" [(ngModel)]="profile.email" (ionChange)="valueChanged()">
       </ion-input>
     </ion-item>
 

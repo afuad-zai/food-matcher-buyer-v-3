@@ -12,8 +12,15 @@ page-store {
     color: color($colors, light);
   }
 
+  .store-name {
+    font-size: 22px;
+  }
+
   .label-md {
-    margin: 13px 0px;
+    margin: 0px;
+    margin-left: 16px;
+    margin-top: 8px;
+    color: white;
   }
 
   .qty-contain {
@@ -40,9 +47,49 @@ page-store {
 
   .place-order {
     background-color: color($colors, danger);
-    margin-left: 10px;
-    margin-right: -3px;
+  }
+
+  .rating {
+    ion-icon {
+      color: color($colors, danger);
+    }
+
+    .item-md ion-thumbnail img {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+    }
+
+    .item-md ion-avatar img {
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+    }
+
+    .card-header {
+      margin: 0px;
+      width: 100%;
+      background-color: color($colors, primary);
+      .item-md {
+        background-color: transparent;
+      }
+    }
+
+    .label-md {
+      margin-left: 8px;
+      color: black;
+    }
+
+    .card-md h1 {
+      color: #f8f8f8;
+    }
+
+    .card-md p {
+      color: #f8f8f8;
+    }
   }
 }
 
-.contact-popover .popover-content{ width: 70% !important; }
+.contact-popover .popover-content {
+  width: 70% !important;
+}

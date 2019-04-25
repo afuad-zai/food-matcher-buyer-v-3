@@ -1,6 +1,6 @@
 {
   "appId": "com.foodmatcher.buy",
-  "appName": "Food Matcher for Buyer",
+  "appName": "FM Buyer",
   "bundledWebRuntime": false,
   "webDir": "www"
 }

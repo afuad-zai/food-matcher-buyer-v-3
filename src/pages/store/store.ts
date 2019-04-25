@@ -4,10 +4,11 @@ import { StoreInfo } from '../../interfaces/store';
 import { MenuProvider } from '../../providers/menu/menu';
 import { MenuInfo } from '../../interfaces/menu';
 import { RatingProvider } from '../../providers/rating/rating';
-import { BriefRating } from '../../interfaces/rating';
+import { BriefRating, DetailRating } from '../../interfaces/rating';
 import { OrderProvider } from '../../providers/order/order';
 import { AccountProvider } from '../../providers/account/account';
 
+import moment from 'moment';
 /**
  * Generated class for the StorePage page.
  *
@@ -26,26 +27,29 @@ export class StorePage {
   briefRating: BriefRating;
   quantity: number[];
   totalPrice: number;
+  selected: string;
+  ratingList: DetailRating[];
+  stars: number[];
 
-  stars: boolean[];
   reviewCount: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private menuPvdr: MenuProvider,
     private ratingPvdr: RatingProvider, private orderPvdr: OrderProvider, private accountPvdr: AccountProvider,
     private toastCtrl: ToastController, private popoverCtrl: PopoverController) {
+    this.selected = "menu";
     this.storeInfo = this.navParams.get("storeInfo")
     this.storeInfo.openTime
     this.menuList = [];
     this.briefRating = { averageRate: 0, reviewCount: 0 }
-    this.stars = [false, false, false, false, false]
+    this.stars = [1, 2, 3, 4, 5]
     this.reviewCount = "";
     this.quantity = [];
     this.totalPrice = 0;
-    console.log(this.storeInfo)
+    this.ratingList = [];
   }
 
   ionViewWillEnter() {
-    this.initRating();
     this.initMenuList();
+    this.initRatingList();
   }
 
   async initMenuList() {
@@ -58,27 +62,12 @@ export class StorePage {
     }).catch(err => console.log(err))
   }
 
-  async initRating() {
-    this.ratingPvdr.getBriefRating(this.storeInfo.id).then((res: any) => {
-      this.briefRating = res;
-
-      for (let i = 0; i < 5; i++) {
-        if (i < this.briefRating.averageRate) {
-          this.stars[i] = true
-        }
-      }
-      console.log(this.briefRating)
-
-      if (this.briefRating.reviewCount == 0) {
-        this.reviewCount = "No review";
-      } else {
-        if (this.briefRating.reviewCount == 0) {
-          this.reviewCount = "1 review";
-        } else {
-          this.reviewCount = this.briefRating.reviewCount + " reviews";
-        }
-      }
-    }).catch(err => this.reviewCount = "No review")
+  async initRatingList() {
+    this.ratingPvdr.getDetailRating(this.storeInfo.id).then((ratingList: DetailRating[]) => {
+      this.ratingList = ratingList;
+    }).catch((err) => {
+      //this.displayToast("Something wents wrong. Users review of this store cannot be loaded.")
+    });
   }
 
   increment(index) {
@@ -96,6 +85,15 @@ export class StorePage {
   }
 
   placeOrder() {
+    var format = "HH:mm";
+    var openTime = moment(this.storeInfo.openTime, format);
+    var closeTime = moment(this.storeInfo.closeTime, format);
+
+    if (!moment().isBetween(openTime, closeTime)) {
+      this.displayToast('Store is not operating right now.');
+      return;
+    }
+
     if (!this.accountPvdr.loginStatus()) {
       this.displayToast('You need to be signed in to place order.')
       this.navCtrl.push('LoginPage');

@@ -67,21 +67,16 @@ export class HomePage {
   }
 
   showPopover() {
-    // let popover = this.popoverCtrl.create('FilterNearbyPopoverPage', { location: location })
+    let popover = this.popoverCtrl.create('FilterNearbyPopoverPage', { location: location })
 
-    // popover.present();
+    popover.present();
 
-    // popover.onDidDismiss((data) => {
-    //   console.log(data)
-    //   if (data)
-    //     this.filterNearbyStore(data);
-    // })
+    popover.onDidDismiss((data) => {
+      console.log(data)
+      if (data)
+        this.filterNearbyStore(data);
+    })
 
-    this.popoverCtrl.create('PostOrderRatingPage', {
-      target: "",
-      ratedBy: "",
-      rated: ""
-    }).present();
   }
 
   displayToast(message: string) {
