@@ -42,7 +42,7 @@ export class HomePage {
         this.mapComponent.addMarker(store);
       })
 
-    })
+    }).catch(()=>{})
 
   }
   filterNearbyStore(data) {

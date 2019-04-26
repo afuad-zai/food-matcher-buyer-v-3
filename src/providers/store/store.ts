@@ -26,8 +26,12 @@ export class StoreProvider {
   }
 
   getNearbyDevice(latitude: number, longitude: number, api: string) {
-    return new Promise(resolve => {
-      this.http.get(api).subscribe((data: { store: any[] }) => {
+    return new Promise((resolve, reject) => {
+      this.http.get(api).subscribe((data: any) => {
+        if (data.status) {
+          reject(data.status)
+          return;
+        }
         let nearbyStores: StoreInfo[] = []
         data.store.forEach(element => {
           let storeInfo: StoreInfo = {
