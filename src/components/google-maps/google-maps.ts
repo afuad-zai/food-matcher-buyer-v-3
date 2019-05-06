@@ -1,4 +1,4 @@
-import { Component, Input, Renderer2, ElementRef, Inject } from '@angular/core';
+import { Component, Input, Renderer2, ElementRef, Inject, ViewChild } from '@angular/core';
 import { Events, NavController } from 'ionic-angular';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Plugins } from '@capacitor/core';
@@ -22,6 +22,7 @@ const { Geolocation, Network } = Plugins;
 export class GoogleMapsComponent {
 
   @Input('apiKey') apiKey: string;
+  @ViewChild('mapContainer') mapContainer: ElementRef;
 
   public map: any;
   public markers: any[] = [];
@@ -30,9 +31,10 @@ export class GoogleMapsComponent {
   private currentLocation;
   private latitude: number;
   private longitude: number;
+  private infoWindows: any;
 
   constructor(private renderer: Renderer2, private element: ElementRef, @Inject(DOCUMENT) private _document, public events: Events, public navCtrl: NavController) {
-
+    this.infoWindows = [];
   }
 
   ngOnInit() {
@@ -223,12 +225,16 @@ export class GoogleMapsComponent {
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: latLng,
-      title: store.name
-      // icon: {
-      //   url: imgSrc,
-      //   scaledSize: new google.maps.Size(60, 60)
-      // }
+      title: store.name,
     });
+
+    let infoWindowContent = '<div id="content"><p id="firstHeading" class="firstHeading">' + store.name + '</p></div>';
+
+    let infoWindow = new google.maps.InfoWindow({
+      content: infoWindowContent
+    });
+
+    infoWindow.open(this.map, marker);
 
     marker.addListener('click', event => {
       this.navCtrl.push('StorePage', { storeInfo: store });
@@ -236,6 +242,12 @@ export class GoogleMapsComponent {
 
     this.markers.push(marker);
 
+  }
+
+  closeAllInfoWindows() {
+    for (let window of this.infoWindows) {
+      window.close();
+    }
   }
 
   public removeMarker(): void {
@@ -247,6 +259,7 @@ export class GoogleMapsComponent {
       });
 
       this.markers = [];
+      this.infoWindows = [];
     }
 
   }
