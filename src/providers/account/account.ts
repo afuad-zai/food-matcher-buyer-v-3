@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { User } from '../../interfaces/user';
 
+import { ApiProvider } from '../api/api'
+
 /*
   Generated class for the AccountProvider provider.
 
@@ -15,9 +17,9 @@ export class AccountProvider {
   private _userInfo: User;
   private _url: string;
 
-  constructor(public http: HttpClient, private transfer: FileTransfer) {
+  constructor(public http: HttpClient, public transfer: FileTransfer, public apiPvdr: ApiProvider) {
     this.init();
-    this._url = "http://35.247.136.6:3000/users"
+    this._url = `${this.apiPvdr.api}/users`;
   }
 
   init() {
@@ -150,7 +152,7 @@ export class AccountProvider {
 
   uploadProfileImage(imgSrc: string) {
     // Destination URL
-    let url = "http://35.247.136.6:3000/uploadfile";
+    let url = `${this.apiPvdr.api}/uploadfile`;
 
     // File for Upload
     var targetPath = imgSrc;

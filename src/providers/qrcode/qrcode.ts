@@ -1,4 +1,4 @@
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Injectable } from '@angular/core';
 
 /*
@@ -10,9 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class QrcodeProvider {
 
-  constructor(private barcodeScanner: BarcodeScanner) {
-    console.log('Hello QrcodeProvider Provider');
-  }
+  constructor(public barcodeScanner: BarcodeScanner) {}
 
   scan() {
     return new Promise((resolve, reject) => {

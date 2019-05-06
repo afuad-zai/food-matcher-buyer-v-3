@@ -21,6 +21,7 @@ import { CameraProvider } from '../providers/camera/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { QrcodeProvider } from '../providers/qrcode/qrcode';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ApiProvider } from '../providers/api/api';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     CameraProvider,
     FileTransfer,
     QrcodeProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    ApiProvider
   ]
 })
 export class AppModule { }

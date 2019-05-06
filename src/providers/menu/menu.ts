@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { MenuInfo } from '../../interfaces/menu'
 
+import { ApiProvider } from '../api/api'
+
 /*
   Generated class for the MenuProvider provider.
 
@@ -14,8 +16,8 @@ export class MenuProvider {
 
   url: string
 
-  constructor(public http: HttpClient) {
-    this.url = "http://35.247.136.6:3000/users";
+  constructor(public http: HttpClient, public apiPvdr: ApiProvider) {
+    this.url = `${this.apiPvdr.api}/users`;
   }
 
   getStoreMenus(storeId: String) {

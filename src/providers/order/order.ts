@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AccountProvider } from '../../providers/account/account';
-import { Order, PostOrder } from '../../interfaces/order';
+import { PostOrder } from '../../interfaces/order';
+import { ApiProvider } from '../api/api';
 
 
 /*
@@ -15,8 +16,8 @@ export class OrderProvider {
 
     private url: string
 
-    constructor(public http: HttpClient, public accountPvdr: AccountProvider) {
-        this.url = "http://35.247.136.6:3000/users";
+    constructor(public http: HttpClient, public accountPvdr: AccountProvider, public apiPvdr: ApiProvider) {
+        this.url = `${this.apiPvdr.api}/users`;
     }
 
     getOrder() {

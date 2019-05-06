@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { StoreInfo } from '../../interfaces/store';
 import { rejects } from 'assert';
+import { ApiProvider } from '../api/api';
 /*
   Generated class for the StoreProvider provider.
 
@@ -14,8 +15,8 @@ export class StoreProvider {
 
   url: string
 
-  constructor(public http: HttpClient) {
-    this.url = "http://35.247.136.6:3000/users";
+  constructor(public http: HttpClient, public apiPvdr: ApiProvider) {
+    this.url = `${this.apiPvdr.api}/users`;
   }
 
   getNearbyStores(latitude: number, longitude: number) {

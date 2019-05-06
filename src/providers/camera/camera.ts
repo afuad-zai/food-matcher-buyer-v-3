@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Plugins, CameraSource, CameraResultType, CameraPhoto } from '@capacitor/core';
 
@@ -12,9 +11,7 @@ const { Camera } = Plugins;
 @Injectable()
 export class CameraProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello CameraProvider Provider');
-  }
+  constructor() {}
 
   getPhoto() {
     return Camera.getPhoto({

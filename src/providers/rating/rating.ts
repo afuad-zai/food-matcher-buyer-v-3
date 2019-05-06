@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BriefRating, DetailRating, PostRating } from '../../interfaces/rating';
+import { PostRating } from '../../interfaces/rating';
 import { AccountProvider } from '../account/account';
+import { ApiProvider } from '../api/api';
 
 /*
   Generated class for the RatingProvider provider.
@@ -12,8 +13,8 @@ import { AccountProvider } from '../account/account';
 @Injectable()
 export class RatingProvider {
   url: string;
-  constructor(public http: HttpClient, private accountPvdr: AccountProvider) {
-    this.url = "http://35.247.136.6:3000/users";
+  constructor(public http: HttpClient, private accountPvdr: AccountProvider, public apiPvdr: ApiProvider) {
+    this.url = `${this.apiPvdr.api}/users`;
   }
 
   getBriefRating(storeId: String) {
