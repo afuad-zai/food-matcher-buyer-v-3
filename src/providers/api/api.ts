@@ -12,7 +12,7 @@ export class ApiProvider {
   private _api: string;
 
   constructor() {
-    this._api = "http://35.247.136.6:3000"
+    this._api = "YOUR_SERVER_URL_HERE"
   }
 
   get api(): string {
